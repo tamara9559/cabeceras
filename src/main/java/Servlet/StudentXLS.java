@@ -1,5 +1,7 @@
 package Servlet;
 
+import Service.StudentImpl;
+import Service.impl.StudentServiceImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -16,6 +18,7 @@ public class StudentXLS extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
             IOException {
+        StudentImpl service = new StudentServiceImpl();
         List<StudentDTO> students = service.listar();
         resp.setContentType("text/html;charset=UTF-8");
         String servletPath = req.getServletPath();
@@ -45,10 +48,10 @@ public class StudentXLS extends HttpServlet {
             out.println("</tr>");
             students.forEach(p ->{
                 out.println("<tr>");
-                out.println("<td>" + p.getId() + "</td>");
-                out.println("<td>" + p.getName() + "</td>");
-                out.println("<td>" + p.getEmail() + "</td>");
-                out.println("<td>" + p.getSemester() + "</td>");
+                out.println("<td>" + p.id() + "</td>");
+                out.println("<td>" + p.name() + "</td>");
+                out.println("<td>" + p.email() + "</td>");
+                out.println("<td>" + p.semester() + "</td>");
                 out.println("</tr>");
             });
             out.println("</table>");
