@@ -6,6 +6,16 @@ public class Student {
     private String email;
     private int semester;
 
+    public Student() {
+    }
+
+    public Student(int id, String name, String email, int semester) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.semester = semester;
+    }
+
     public int getId() {
         return id;
     }
